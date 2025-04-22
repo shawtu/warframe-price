@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aerial Bond Prices</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Top 3 Aerial Bond Prices</h1>
+  <ul id="price-list"><li>Loading...</li></ul>
+
+  <script>
+    fetch('/api/aerial-bond')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('price-list');
+        list.innerHTML = '';
+        data.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = `${item.price}p - ${item.user}`;
+          list.appendChild(li);
+        });
+      })
+      .catch(() => {
+        document.getElementById('price-list').innerHTML = '<li>Failed to load prices</li>';
+      });
+  </script>
+</body>
+</html>
