@@ -1,8 +1,3 @@
-import express from 'express';
-import fetch from 'node-fetch';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
