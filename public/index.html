@@ -1,35 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aerial Bond Prices</title>
+  <meta charset="UTF-8">
+  <title>Bond Prices</title>
   <style>
     body {
       font-family: sans-serif;
       padding: 2rem;
     }
+    .section {
+      margin-bottom: 2rem;
+    }
   </style>
 </head>
 <body>
-  <h1>Top 3 Aerial Bond Prices</h1>
-  <ul id="price-list"><li>Loading...</li></ul>
+  <h1>Bond Prices</h1>
+
+  <div class="section">
+    <h3>Aerial Bond</h3>
+    <ul id="aerial-list"><li>Loading...</li></ul>
+  </div>
+
+  <div class="section">
+    <h3>Astral Bond</h3>
+    <ul id="astral-list"><li>Loading...</li></ul>
+  </div>
+
+  <div class="section">
+    <h3>Covert Bond</h3>
+    <ul id="covert-list"><li>Loading...</li></ul>
+  </div>
 
   <script>
-    fetch('/api/aerial-bond')
-      .then(res => res.json())
-      .then(data => {
-        const list = document.getElementById('price-list');
-        list.innerHTML = '';
-        data.forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = `${item.price}p - ${item.user}`;
-          list.appendChild(li);
+    const bonds = [
+      { name: 'Aerial Bond', id: 'aerial_bond', elementId: 'aerial-list' },
+      { name: 'Astral Bond', id: 'astral_bond', elementId: 'astral-list' },
+      { name: 'Covert Bond', id: 'covert_bond', elementId: 'covert-list' },
+    ];
+
+    bonds.forEach(bond => {
+      fetch(`/api/${bond.id}`)
+        .then(res => res.json())
+        .then(data => {
+          const list = document.getElementById(bond.elementId);
+          list.innerHTML = '';
+          data.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.price}p - ${item.user}`;
+            list.appendChild(li);
+          });
+        })
+        .catch(() => {
+          document.getElementById(bond.elementId).innerHTML = '<li>Failed to load prices</li>';
         });
-      })
-      .catch(() => {
-        document.getElementById('price-list').innerHTML = '<li>Failed to load prices</li>';
-      });
+    });
   </script>
 </body>
 </html>
