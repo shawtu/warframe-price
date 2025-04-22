@@ -1,10 +1,17 @@
-const express = require('express');
-const fetch = require('node-fetch');
+import express from 'express';
+import fetch from 'node-fetch';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Support for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Serve static frontend files
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Bond price endpoint
 app.get('/api/:item', async (req, res) => {
@@ -15,7 +22,6 @@ app.get('/api/:item', async (req, res) => {
     const response = await fetch(url);
     const data = await response.json();
 
-    // Get top 3 in-game sell orders
     const sellOrders = data.payload.orders
       .filter(order => order.order_type === 'sell' && order.user.status === 'ingame')
       .sort((a, b) => a.platinum - b.platinum)
@@ -33,5 +39,5 @@ app.get('/api/:item', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
