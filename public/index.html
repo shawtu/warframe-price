@@ -2,47 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Bond Prices</title>
+  <title>Warframe Bond Prices</title>
   <style>
     body {
       font-family: sans-serif;
       padding: 2rem;
+      background: #111;
+      color: #eee;
+    }
+    h1 {
+      text-align: center;
     }
     .section {
       margin-bottom: 2rem;
+      padding: 1rem;
+      background: #222;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <h1>Bond Prices</h1>
-
-  <div class="section">
-    <h3>Aerial Bond</h3>
-    <ul id="aerial-list"><li>Loading...</li></ul>
-  </div>
-
-  <div class="section">
-    <h3>Astral Bond</h3>
-    <ul id="astral-list"><li>Loading...</li></ul>
-  </div>
-
-  <div class="section">
-    <h3>Covert Bond</h3>
-    <ul id="covert-list"><li>Loading...</li></ul>
-  </div>
+  <h1>Warframe Bond Prices</h1>
+  <div id="container"></div>
 
   <script>
     const bonds = [
-      { name: 'Aerial Bond', id: 'aerial_bond', elementId: 'aerial-list' },
-      { name: 'Astral Bond', id: 'astral_bond', elementId: 'astral-list' },
-      { name: 'Covert Bond', id: 'covert_bond', elementId: 'covert-list' },
+      { name: 'Aerial Bond', id: 'aerial_bond' },
+      { name: 'Astral Bond', id: 'astral_bond' },
+      { name: 'Covert Bond', id: 'covert_bond' },
+      { name: 'Tandem Bond', id: 'tandem_bond' },
+      { name: 'Mystic Bond', id: 'mystic_bond' },
+      { name: 'Restorative Bond', id: 'restorative_bond' },
+      { name: 'Manifold Bond', id: 'manifold_bond' },
+      { name: 'Momentous Bond', id: 'momentous_bond' },
+      { name: 'Tenacious Bond', id: 'tenacious_bond' },
+      { name: 'Reinforced Bond', id: 'reinforced_bond' },
+      { name: 'Vicious Bond', id: 'vicious_bond' },
+      { name: 'Seismic Bond', id: 'seismic_bond' },
+      { name: 'Contagious Bond', id: 'contagious_bond' },
+      { name: 'Duplex Bond', id: 'duplex_bond' },
     ];
 
+    const container = document.getElementById('container');
+
     bonds.forEach(bond => {
+      const section = document.createElement('div');
+      section.classList.add('section');
+      section.innerHTML = `<h3>${bond.name}</h3><ul id="${bond.id}"><li>Loading...</li></ul>`;
+      container.appendChild(section);
+
       fetch(`/api/${bond.id}`)
         .then(res => res.json())
         .then(data => {
-          const list = document.getElementById(bond.elementId);
+          const list = document.getElementById(bond.id);
           list.innerHTML = '';
           data.forEach(item => {
             const li = document.createElement('li');
@@ -51,7 +63,7 @@
           });
         })
         .catch(() => {
-          document.getElementById(bond.elementId).innerHTML = '<li>Failed to load prices</li>';
+          document.getElementById(bond.id).innerHTML = '<li>Failed to load prices</li>';
         });
     });
   </script>
