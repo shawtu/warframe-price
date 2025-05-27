@@ -1,0 +1,91 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f7fa;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #213347;
+  color: #fff;
+  padding: 1em 1.5em;
+}
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+.tabs {
+  display: flex;
+  background: #e7eefa;
+  padding-left: 1.5em;
+  border-bottom: 2px solid #d0d8e8;
+}
+.rep-tab {
+  background: none;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  color: #213347;
+  padding: 0.8em 1.5em;
+  margin-right: 0.5em;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.rep-tab.active {
+  background: #fff;
+  border-bottom: 2px solid #fff;
+  color: #213347;
+}
+main {
+  padding: 2em 2em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.tab-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #dde3f0;
+  padding-bottom: 0.4em;
+}
+#tab-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #213347;
+}
+.customize-link {
+  font-size: 1em;
+  color: #1d65a6;
+  text-decoration: underline;
+  margin-left: auto;
+  margin-right: 0.2em;
+  transition: color 0.15s;
+}
+.customize-link:hover {
+  color: #3b8beb;
+}
+.syndicate-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px #0001;
+}
+.syndicate-table th, .syndicate-table td {
+  padding: 0.6em 1em;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.syndicate-table th {
+  background: #e7eefa;
+}
+.syndicate-table tr:last-child td {
+  border-bottom: none;
+}
+@media (max-width: 600px) {
+  main { padding: 0.5em; }
+  .syndicate-table, .syndicate-table th, .syndicate-table td { font-size: 0.95em;}
+}

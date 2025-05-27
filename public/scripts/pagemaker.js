@@ -1,19 +1,3 @@
-// --- 0. Cache for market item mapping ---
-let marketItemMap = null;
-
-// --- 0.1. Fetch and cache all market items ---
-async function ensureMarketItemMap() {
-  if (marketItemMap) return marketItemMap;
-  const resp = await fetch('https://api.warframe.market/v1/items');
-  const data = await resp.json();
-  marketItemMap = {};
-  for (const entry of data.payload.items) {
-    // Use lowercase for easier matching
-    marketItemMap[entry.item_name.toLowerCase()] = entry.url_name;
-  }
-  return marketItemMap;
-}
-
 // --- 1. Fetch and parse CSV data ---
 export async function fetchSyndicateData(csvUrl) {
   const response = await fetch(csvUrl);
@@ -40,31 +24,9 @@ function parseCsvData(text) {
   return items;
 }
 
-// --- 2. Warframe Market Price Fetcher (uses proxy server) ---
-async function getLowestMarketPrices(itemName, count = 5) {
-  const endpoint = '/proxy/looter'; // Use your proxy endpoint!
-  try {
-    const resp = await fetch(endpoint);
-    if (!resp.ok) {
-      return [`HTTP error ${resp.status}: ${resp.statusText}`];
-    }
-    const data = await resp.json();
-    if (
-      data &&
-      data.payload &&
-      Array.isArray(data.payload.orders) &&
-      data.payload.orders.length > 0
-    ) {
-      return [data.payload.orders[0].platinum];
-    } else {
-      return ["no order found"];
-    }
-  } catch (e) {
-    return [e?.message || String(e)];
-  }
-}
-
 // --- 3. Render Table ---
+import { getLowestMarketPrices } from './market.js';
+
 export function renderSyndicateTable(items, container) {
   // Only show important items
   const importantItems = items.filter(it => it.Important === true);
