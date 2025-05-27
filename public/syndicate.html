@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Syndicates</title>
+  <link rel="stylesheet" href="synd.css">
+  <script type="module">
+    import { fetchSyndicateData, renderSyndicateTable } from './app.js';
+
+    // Mapping syndicate ids to CSV files and titles
+    const syndicates = {
+      "CephalonSimaris": {
+        file: "syndicates/CephalonSimaris.csv",
+        label: "Cephalon Simaris"
+      },
+      "Synd2": {
+        file: "syndicates/Synd2.csv",
+        label: "Synd2"
+      },
+      "Synd3": {
+        file: "syndicates/Synd3.csv",
+        label: "Synd3"
+      }
+    };
+
+    // Render logic
+    function renderActiveTab(syndId) {
+      // Update tab highlight
+      document.querySelectorAll('.rep-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.syndicate === syndId);
+      });
+
+      // Update tab title and customize link
+      document.getElementById('tab-title').textContent = syndicates[syndId].label;
+
+      // Table
+      fetchSyndicateData(syndicates[syndId].file).then(items => {
+        renderSyndicateTable(items, 'syndicate-table');
+      });
+    }
+
+    // On load, setup tabs and initial render
+    document.addEventListener('DOMContentLoaded', () => {
+      // Tab click listeners
+      document.querySelectorAll('.rep-tab').forEach(btn => {
+        btn.addEventListener('click', () => renderActiveTab(btn.dataset.syndicate));
+      });
+      // Initial tab
+      renderActiveTab('CephalonSimaris');
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Syndicates</h1>
+  </header>
+  <nav class="tabs">
+    <button class="rep-tab active" data-syndicate="CephalonSimaris">Cephalon Simaris</button>
+    <button class="rep-tab" data-syndicate="Synd2">Synd2</button>
+    <button class="rep-tab" data-syndicate="Synd3">Synd3</button>
+  </nav>
+  <main>
+    <div class="tab-header-row">
+      <span id="tab-title">Cephalon Simaris</span>
+      <a href="#" class="customize-link">customize list</a>
+    </div>
+    <div id="syndicate-table"></div>
+  </main>
+</body>
+</html>
