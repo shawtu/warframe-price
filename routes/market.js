@@ -1,5 +1,5 @@
 import express from 'express';
-import { getLowestSellOrders } from '../services/warframeMarketService.js';
+import { getLowestSellOrders } from '../services/getLowestSellOrders.js';
 
 const router = express.Router();
 

@@ -1,11 +1,11 @@
 import express from 'express';
-import { getMarketNameMapping } from '../services/nameMappingService.js';
+import { getNameMapping } from '../services/getNameMapping.js';
 
 const router = express.Router();
 
 router.get('/market-names', async (req, res) => {
   try {
-    const mapping = await getMarketNameMapping();
+    const mapping = await getNameMapping();
     res.json(mapping);
   } catch (err) {
     console.error(err);
