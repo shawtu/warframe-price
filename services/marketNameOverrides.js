@@ -13,7 +13,8 @@ export const marketNameOverrides = {
   "sacrificial pressure": null,
 
   // Example: blueprint with hardset price
-  "exilus warframe adapter blueprint": { price: 20 },
+  "exilus warframe adapter blueprint": { price: "Buy completed from store instead" },
+  "melee arcane adapter": { price: 20 },
 
   // Items with a market slug override (e.g. because the in-game name doesn't match the market slug)
   "companion weapon riven mod": { slug: "companion_weapon_riven_mod_(veiled)" },

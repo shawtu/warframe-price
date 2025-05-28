@@ -2,70 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Warframe Bond Prices</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 2rem;
-      background: #111;
-      color: #eee;
-    }
-    h1 {
-      text-align: center;
-    }
-    .section {
-      margin-bottom: 2rem;
-      padding: 1rem;
-      background: #222;
-      border-radius: 8px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warframe Planning Dashboard</title>
+  <link rel="stylesheet" href="./style/WFplan.css">
 </head>
 <body>
-  <h1>Warframe Bond Prices</h1>
-  <div id="container"></div>
+  <header>
+    <div class="container">
+      <h1>
+        Warframe Planning Dashboard
+        <button id="clear-daily" style="margin-left:12px;">Daily</button>
+        <button id="clear-weekly" style="margin-left:6px;">Weekly</button>
+      </h1>
+    </div>
+  </header>
 
-  <script>
-    const bonds = [
-      { name: 'Aerial Bond', id: 'aerial_bond' },
-      { name: 'Astral Bond', id: 'astral_bond' },
-      { name: 'Covert Bond', id: 'covert_bond' },
-      { name: 'Tandem Bond', id: 'tandem_bond' },
-      { name: 'Mystic Bond', id: 'mystic_bond' },
-      { name: 'Restorative Bond', id: 'restorative_bond' },
-      { name: 'Manifold Bond', id: 'manifold_bond' },
-      { name: 'Momentous Bond', id: 'momentous_bond' },
-      { name: 'Tenacious Bond', id: 'tenacious_bond' },
-      { name: 'Reinforced Bond', id: 'reinforced_bond' },
-      { name: 'Vicious Bond', id: 'vicious_bond' },
-      { name: 'Seismic Bond', id: 'seismic_bond' },
-      { name: 'Contagious Bond', id: 'contagious_bond' },
-      { name: 'Duplex Bond', id: 'duplex_bond' },
-    ];
+  <main class="dashboard container">
+    <!-- Special Importance Section -->
+    <section class="special-importance collapsible">
+      <div class="section-header">
+        <button class="minimize-btn" aria-label="Minimize section">-</button>
+        <h2 class="subheader">SPECIAL IMPORTANCE</h2>
+      </div>
+      <div class="section-content" id="special-importance-cards"></div>
+    </section>
 
-    const container = document.getElementById('container');
+    <!-- Three-Column Layout -->
+    <section class="three-column-layout">
+      <!-- Column 1: Weekly Tasks -->
+      <div class="column collapsible">
+        <div class="section-header">
+          <button class="minimize-btn" aria-label="Minimize section">-</button>
+          <h2 class="subheader">WEEKLY TASKS</h2>
+          <div class="reset-timer" id="weekly-reset-timer"></div>
+        </div>
+        <div class="section-content" id="weekly-tasks-cards"></div>
+      </div>
 
-    bonds.forEach(bond => {
-      const section = document.createElement('div');
-      section.classList.add('section');
-      section.innerHTML = `<h3>${bond.name}</h3><ul id="${bond.id}"><li>Loading...</li></ul>`;
-      container.appendChild(section);
+      <!-- Column 2: Daily Tasks -->
+      <div class="column collapsible">
+        <div class="section-header">
+          <button class="minimize-btn" aria-label="Minimize section">-</button>
+          <h2 class="subheader">DAILY TASKS</h2>
+          <div class="reset-timer" id="daily-reset-timer"></div>
+        </div>
+        <div class="section-content" id="daily-tasks-cards"></div>
+      </div>
 
-      fetch(`/api/${bond.id}`)
-        .then(res => res.json())
-        .then(data => {
-          const list = document.getElementById(bond.id);
-          list.innerHTML = '';
-          data.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = `${item.price}p - ${item.user}`;
-            list.appendChild(li);
-          });
-        })
-        .catch(() => {
-          document.getElementById(bond.id).innerHTML = '<li>Failed to load prices</li>';
-        });
-    });
-  </script>
+      <!-- Column 3: Time-Sensitive Activities -->
+      <div class="column collapsible">
+        <div class="section-header">
+          <button class="minimize-btn" aria-label="Minimize section">-</button>
+          <h2 class="subheader">TIME-SENSITIVE ACTIVITIES</h2>
+        </div>
+        <div class="section-content" id="time-sensitive-cards"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Warframe Planning Dashboard - Version 1</p>
+    </div>
+  </footer>
+  <script type="module" src="./scripts/scripts.js"></script>
 </body>
 </html>

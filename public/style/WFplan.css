@@ -1,0 +1,247 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-main: #1D2125;
+  --bg-section: #161A1D;
+  --header-title: #B6C2CD;
+  --timer-color: #B6C2CD;
+  --card-title: #FF9900;
+  --reward-color: #b3e6ff;
+  --card-radius: 12px;
+  --card-gap: 12px;
+  --card-padding: 12px;
+  --section-title-font: 'Inter', 'Roboto', sans-serif;
+  --section-title-size: 12px;
+  --section-title-weight: 300;
+  --light-shadow: linear-gradient(0deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.10) 100%),
+                   linear-gradient(90deg, rgba(29,33,37,0.00) 0%, rgba(29,33,37,0.70) 100%),
+                   linear-gradient(90deg, rgba(29,33,37,0.70) 0%, rgba(29,33,37,0.00) 100%),
+                   linear-gradient(180deg, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.00) 13%);
+}
+
+/* ===== GENERAL PAGE STYLES ===== */
+body {
+  font-family: var(--section-title-font);
+  background: var(--bg-main);
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== THREE COLUMN LAYOUT ===== */
+.three-column-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 12px 24px;
+  margin-bottom: 32px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ===== SECTION STYLING ===== */
+section {
+  background: var(--bg-section);
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--card-gap);
+  padding: 12px 4px 12px;
+}
+.section-header h2 {
+  color: var(--header-title);
+  font-family: var(--section-title-font);
+  font-size: var(--section-title-size);
+  font-weight: var(--section-title-weight);
+  margin: 0;
+  text-transform: uppercase;
+  line-height: normal;
+  font-style: normal;
+}
+
+/* ===== TIMER ===== */
+.reset-timer {
+  color: var(--timer-color);
+  font-family: var(--section-title-font);
+  font-size: var(--section-title-size);
+  font-weight: var(--section-title-weight);
+  line-height: normal;
+  margin-left: auto;
+  letter-spacing: 1px;
+  min-width: 120px;
+  text-align: right;
+}
+
+/* ===== CARD COMPONENTS ===== */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background: var(--bg-main);
+  border-radius: var(--card-radius);
+  margin-bottom: 18px;
+  box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.10);
+  border: 1px solid #222;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--card-gap);
+  padding: var(--card-padding);
+  align-self: stretch;
+}
+
+.card-header h3 {
+  font-size: 1.125rem;
+  color: var(--card-title);
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: var(--section-title-font);
+}
+
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.check-off {
+  opacity: 0;
+  width: 18px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.checkbox-icon {
+  width: 18px;
+  height: 20px;
+  display: inline-block;
+  pointer-events: none;
+  /* The icon will be set by JS */
+}
+
+.card.checked-off {
+  opacity: 0.5;
+}
+
+/* ===== CARD DETAILS CONTAINER ===== */
+.card-details {
+  background: var(--light-shadow);
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ===== MINIMIZE BUTTON ===== */
+.minimize-btn {
+  position: absolute;
+  top: 8px;
+  right: 6px;
+  z-index: 1;
+  background: none;
+  border: none;
+  color: #ffcc00;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 2px 8px;
+}
+.minimize-btn:focus {
+  outline: 2px solid #ffcc00;
+}
+
+/* ===== CARD SUMMARY ROW ===== */
+.card-summary {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  background: none;
+}
+
+.icon-timer,
+.icon-diamond {
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+  color: var(--header-title);
+}
+
+.summary-est-value {
+  font-weight: 500;
+  color: var(--header-title);
+  font-size: 13px;
+  white-space: nowrap;
+  margin-right: 16px;
+}
+
+.summary-reward-value {
+  flex: 1 1 0;
+  min-width: 0;
+  font-weight: 500;
+  color: var(--header-title);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  margin-right: 38px;
+}
+
+/* ===== CARD CONTENT ===== */
+.card-content {
+  background: none;
+  padding-top: 12px;
+}
+.card-content.hidden,
+.card-summary.hidden {
+  display: none;
+}
+
+/* ===== MISSION CARD ===== */
+.mission-card {
+  background: #000;
+  margin: 10px 0;
+  font-size: smaller;
+  color: #e0e0e0;
+  padding: 10px;
+  border-left: 4px solid #888;
+  border-radius: 4px;
+}
+.mission-card h4 {
+  color: #fff;
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+.mission-card p {
+  margin: 6px 0;
+}
+
+/* ===== SPECIAL IMPORTANCE SECTION ===== */
+.special-importance .section-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}

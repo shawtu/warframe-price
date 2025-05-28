@@ -50,6 +50,10 @@
       document.getElementById('tab-title').textContent = syndicates[syndId].label;
       fetchSyndicateData(syndicates[syndId].file).then(items => {
         renderSyndicateTable(items, 'syndicate-table');
+        // After rendering the table, attach sorting
+        import('./scripts/tableSort.js').then(module => {
+          module.attachTableSorting('syndicate-table');
+        });
       });
     }
 

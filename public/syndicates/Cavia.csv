@@ -1,27 +1,27 @@
-Name,Reputation,Plat,Important
-Melee Retaliation,1000,,True
-Melee Fortification,5000,,True
-Melee Exposure,7500,,True
-Melee Influence,7500,,True
-Melee Animosity,7500,,True
-Melee Vortex,7500,,True
-Melee Arcane Adapter,50000,,True
-Necramech Blitz,10000,,True
-Necramech Enemy Sense,10000,,True
-Necramech Deflection,10000,,True
-Necramech Slipstream,10000,,True
-Necramech Aviator,10000,,True
-Necramech Fury,10000,,True
-Necramech Reach,10000,,True
-Necramech Redirection,15000,,True
-Necramech Augur,15000,,True
-Necramech Rebuke,15000,,True
-Necramech Rage,15000,,True
-Necramech Hydraulics,15000,,True
-Necramech Repair,25000,,True
-Necramech Steel Fiber,25000,,True
-Necramech Continuity,25000,,True
-Necramech Stretch,25000,,True
-Necramech Seismic Wave,25000,,True
-Necramech Streamline,28000,,True
-Necramech Thrusters,28000,,True
+Name,Reputation,Plat,Type,Important
+Melee Retaliation,1000,,Arcane,True
+Melee Fortification,5000,,Arcane,True
+Melee Exposure,7500,,Arcane,True
+Melee Influence,7500,,Arcane,True
+Melee Animosity,7500,,Arcane,True
+Melee Vortex,7500,,Arcane,True
+Melee Arcane Adapter,50000,,Arcane,True
+Necramech Blitz,10000,,Mod,True
+Necramech Enemy Sense,10000,,Mod,True
+Necramech Deflection,10000,,Mod,True
+Necramech Slipstream,10000,,Mod,True
+Necramech Aviator,10000,,Mod,True
+Necramech Fury,10000,,Mod,True
+Necramech Reach,10000,,Mod,True
+Necramech Redirection,15000,,Mod,True
+Necramech Augur,15000,,Mod,True
+Necramech Rebuke,15000,,Mod,True
+Necramech Rage,15000,,Mod,True
+Necramech Hydraulics,15000,,Mod,True
+Necramech Repair,25000,,Mod,True
+Necramech Steel Fiber,25000,,Mod,True
+Necramech Continuity,25000,,Mod,True
+Necramech Stretch,25000,,Mod,True
+Necramech Seismic Wave,25000,,Mod,True
+Necramech Streamline,28000,,Mod,True
+Necramech Thrusters,28000,,Mod,True

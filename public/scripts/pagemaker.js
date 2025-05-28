@@ -24,15 +24,21 @@ function parseCsvData(text) {
   return items;
 }
 
-// --- Helper: Fetch lowest market prices from backend ---
-export async function getLowestMarketPrices(itemName, count = 5) {
-  const response = await fetch(`/api/${encodeURIComponent(itemName)}`);
-  if (!response.ok) return Array(count).fill('-');
+// --- Helper: Batch fetch lowest market prices from backend ---
+export async function getLowestMarketPricesBatch(itemNames, count = 5) {
+  if (!itemNames.length) return [];
+  const response = await fetch(`/api/batch?items=${itemNames.map(encodeURIComponent).join(',')}`);
+  if (!response.ok) return itemNames.map(() => Array(count).fill('-'));
   const data = await response.json();
-  return data.map(order => order.price).slice(0, count);
+  // Each result: { item, orders } or { item, error }
+  return data.map(res =>
+    res.orders
+      ? res.orders.map(order => order.price).slice(0, count)
+      : Array(count).fill(res.error || '-')
+  );
 }
 
-// --- 3. Render Table ---
+// --- 3. Render Table (BATCHED) ---
 export function renderSyndicateTable(items, container) {
   // Only show important items
   const importantItems = items.filter(it => it.Important === true);
@@ -62,20 +68,26 @@ export function renderSyndicateTable(items, container) {
   container.innerHTML = "";
   container.appendChild(table);
 
-  // Fetch prices for each item and update Plat column
-  importantItems.forEach((item, idx) => {
-    getLowestMarketPrices(item.Name, 5).then(pricesArr => {
+  // Batch fetch all prices for important items
+  const itemNames = importantItems.map(item => item.Name);
+  getLowestMarketPricesBatch(itemNames, 5).then(pricesArrs => {
+    pricesArrs.forEach((pricesArr, idx) => {
       const platCell = tbody.rows[idx].cells[2];
       platCell.textContent = pricesArr.join(', ');
-      // Optionally update Rep/Plat with the first price only if it's a number
-      const rep = item.Reputation;
+
+      // Update Rep/Plat as before
+      const rep = importantItems[idx].Reputation;
       if (
         rep &&
         pricesArr[0] &&
         !isNaN(Number(pricesArr[0])) &&
-        pricesArr[0] !== "-"
+        pricesArr[0] !== "-" &&
+        pricesArr[0] !== "Not found"
       ) {
-        tbody.rows[idx].cells[3].textContent = (rep / pricesArr[0]).toFixed(1);
+        // Avoid division by zero
+        const plat = Number(pricesArr[0]);
+        tbody.rows[idx].cells[3].textContent =
+          plat !== 0 ? (rep / plat).toFixed(1) : "-";
       } else {
         tbody.rows[idx].cells[3].textContent = "-";
       }
