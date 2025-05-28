@@ -19,6 +19,7 @@ async function fetchMarketOrders(slug) {
     }));
 }
 
+// Single-item logic (for backwards compatibility)
 export async function getLowestSellOrders(item) {
   const mapping = await getNameMapping();
   const itemKey = item.toLowerCase();
@@ -52,4 +53,13 @@ export async function getLowestSellOrders(item) {
     throw new Error(`No entry found for item: ${item}`);
   }
   return await fetchMarketOrders(entry.url_name);
+}
+
+// NEW: Batch-fetch multiple items using your local batch endpoint
+export async function getLowestSellOrdersBatch(items) {
+  const url = `http://localhost:3000/api/batch?items=${encodeURIComponent(items.join(','))}`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error('Failed to fetch batch market data');
+  // Each result is the same as what getLowestSellOrders would return for one item
+  return await response.json();
 }

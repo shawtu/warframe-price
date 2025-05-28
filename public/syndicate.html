@@ -21,39 +21,42 @@
         file: "syndicates/Hex.csv",
         label: "Hex"
       },
-      "Synd2": {
-        file: "syndicates/Synd2.csv",
-        label: "Synd2"
+      "Cavia": {
+        file: "syndicates/Cavia.csv",
+        label: "Cavia"
       },
-      "Synd3": {
-        file: "syndicates/Synd3.csv",
-        label: "Synd3"
+      "Kahl": {
+        file: "syndicates/Kahl.csv",
+        label: "Kahl"
+      },
+      "Holdfast": {
+        file: "syndicates/Holdfast.csv",
+        label: "Holdfast"
+      },
+      "LuaThrax": {
+        file: "syndicates/LuaThrax.csv",
+        label: "Lua Thrax"
+      },
+      "Nightwave": {
+        file: "syndicates/Nightwave.csv",
+        label: "Nightwave"
       }
     };
 
-    // Render logic
     function renderActiveTab(syndId) {
-      // Update tab highlight
       document.querySelectorAll('.rep-tab').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.syndicate === syndId);
       });
-
-      // Update tab title and customize link
       document.getElementById('tab-title').textContent = syndicates[syndId].label;
-
-      // Table
       fetchSyndicateData(syndicates[syndId].file).then(items => {
         renderSyndicateTable(items, 'syndicate-table');
       });
     }
 
-    // On load, setup tabs and initial render
     document.addEventListener('DOMContentLoaded', () => {
-      // Tab click listeners
       document.querySelectorAll('.rep-tab').forEach(btn => {
         btn.addEventListener('click', () => renderActiveTab(btn.dataset.syndicate));
       });
-      // Initial tab (set to CephalonSimaris or change to Ostron/Hex if you want)
       renderActiveTab('CephalonSimaris');
     });
   </script>
@@ -66,8 +69,11 @@
     <button class="rep-tab active" data-syndicate="CephalonSimaris">Cephalon Simaris</button>
     <button class="rep-tab" data-syndicate="Ostron">Ostron</button>
     <button class="rep-tab" data-syndicate="Hex">Hex</button>
-    <button class="rep-tab" data-syndicate="Synd2">Synd2</button>
-    <button class="rep-tab" data-syndicate="Synd3">Synd3</button>
+    <button class="rep-tab" data-syndicate="Cavia">Cavia</button>
+    <button class="rep-tab" data-syndicate="Kahl">Kahl</button>
+    <button class="rep-tab" data-syndicate="Holdfast">Holdfast</button>
+    <button class="rep-tab" data-syndicate="LuaThrax">Lua Thrax</button>
+    <button class="rep-tab" data-syndicate="Nightwave">Nightwave</button>
   </nav>
   <main>
     <div class="tab-header-row">
