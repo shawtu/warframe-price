@@ -24,9 +24,15 @@ function parseCsvData(text) {
   return items;
 }
 
-// --- 3. Render Table ---
-import { getLowestMarketPrices } from './market.js';
+// --- Helper: Fetch lowest market prices from backend ---
+export async function getLowestMarketPrices(itemName, count = 5) {
+  const response = await fetch(`/api/${encodeURIComponent(itemName)}`);
+  if (!response.ok) return Array(count).fill('-');
+  const data = await response.json();
+  return data.map(order => order.price).slice(0, count);
+}
 
+// --- 3. Render Table ---
 export function renderSyndicateTable(items, container) {
   // Only show important items
   const importantItems = items.filter(it => it.Important === true);
