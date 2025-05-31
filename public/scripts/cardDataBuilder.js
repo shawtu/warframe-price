@@ -1,18 +1,16 @@
-import { cardData } from './cardData.js';
+import { getCardData } from './cardData.js';
 
 export async function buildCardData() {
-  // Deep clone cardData so you don't mutate the imported object directly (optional but safer)
-  const cardDataCopy = JSON.parse(JSON.stringify(cardData));
+  // Get the up-to-date cardData (with weekly/daily from TSV)
+  const cardData = await getCardData();
 
   const response = await fetch('https://api.warframestat.us/pc');
   const data = await response.json();
 
-  // Helper: find timeSensitive task object by name
   function findTask(name) {
-    return cardDataCopy.timeSensitive.find(card => card.task === name);
+    return cardData.timeSensitive.find(card => card.task === name);
   }
 
-  // Categorize and inject missions
   // --- Speedy Relics ---
   const speedyRelics = [];
   data.fissures.forEach(fissure => {
@@ -105,6 +103,5 @@ export async function buildCardData() {
   });
   findTask("Argon Crystals").missions = argonCrystals;
 
-  // --- Return new cardData object with dynamic missions ---
-  return cardDataCopy;
+  return cardData;
 }

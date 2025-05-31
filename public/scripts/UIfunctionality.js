@@ -71,7 +71,8 @@ function saveCardState(taskId, { checked = undefined, open = undefined } = {}) {
 // -- Restore Checkboxes and open state to where they were on last visit ---
 function restoreAllCardStates() {
   const state = JSON.parse(localStorage.getItem('cardStates') || '{}');
-  document.querySelectorAll('.check-off').forEach(checkbox => {
+  // Only restore for checkboxes NOT inside #time-sensitive-cards
+  document.querySelectorAll('.check-off:not(#time-sensitive-cards .check-off)').forEach(checkbox => {
     const card = checkbox.closest('.card');
     const taskId = checkbox.getAttribute('data-task-id');
     if (!card || !taskId) return;
@@ -108,6 +109,7 @@ export function setupUIFunctionality() {
 
   // Restore state
   restoreAllCardStates();
+  reorderCardsInSection(document.getElementById("time-sensitive-cards"));
   reorderCardsInSection(document.getElementById("weekly-tasks-cards"));
   reorderCardsInSection(document.getElementById("daily-tasks-cards"));
 }
