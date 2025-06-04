@@ -13,6 +13,16 @@ export const diamondIcon = `
   </svg>
 `;
 
+export const platHrIcon = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+    <rect x="9" y="4" width="4" height="8" rx="1" stroke="#B6C2CD" stroke-width="1.5" fill="none"/>
+    <path d="M8.5 0.94c-.63-.28-1.3-.44-2-.44C3.28.5.5 3.76.5 8s2.78 7.5 6 7.5c.7 0 1.37-.16 2-.44" stroke="#B6C2CD" stroke-width="1.5" fill="none"/>
+    <path d="M10.5.5c3.22 0 6 3.26 6 7.5s-2.78 7.5-6 7.5-6-3.26-6-7.5S7.28.5 10.5.5Z" stroke="#B6C2CD" stroke-width="1.5" fill="none"/>
+    <path d="M6.5.5h4" stroke="#B6C2CD" stroke-width="1.5" fill="none"/>
+    <path d="M6.5 15.5h4" stroke="#B6C2CD" stroke-width="1.5" fill="none"/>
+  </svg>
+`;
+
 export const checkboxUncheckedIcon = `
   <svg width="18" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 18 20">
@@ -47,7 +57,7 @@ export const archonIcon = `
   </svg>
 `;
 
-export const installerIcon = `
+export const installersIcon = `
   <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
     <path d="M12 20v-6M12 4v2M6.93 6.93l-1.42 1.42M17.07 6.93l1.42 1.42"/>
@@ -55,7 +65,7 @@ export const installerIcon = `
   </svg>
 `;
 
-export const rareArcaneIcon = `
+export const rareArcanesIcon = `
   <svg width="16" height="16" fill="none" stroke="purple" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
     <circle cx="12" cy="12" r="6" stroke="purple" fill="none"/>
@@ -79,7 +89,7 @@ export const kuvaIcon = `
   </svg>
 `;
 
-export const arcaneIcon = `
+export const dunnoIcon = `
   <svg width="16" height="16" fill="none" stroke="#00bfff" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
     <circle cx="12" cy="12" r="8" stroke="#00bfff"/>
@@ -112,11 +122,21 @@ export const warframeIcon = `
   </svg>
 `;
 
-export const locationIcon = `
+export const locIcon = `
   <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
     <path d="M12 21c-4.97-6.54-8-10-8-13a8 8 0 0 1 16 0c0 3-3.03 6.46-8 13z"/>
     <circle cx="12" cy="8" r="3"/>
+  </svg>
+`;
+
+export const farmIcon = `
+  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+    <rect x="3" y="11" width="18" height="7" rx="2"/>
+    <rect x="7" y="7" width="2" height="4"/>
+    <rect x="15" y="7" width="2" height="4"/>
+    <rect x="11" y="4" width="2" height="7"/>
   </svg>
 `;
 
@@ -126,5 +146,28 @@ export const infoIcon = `
     <circle cx="12" cy="12" r="10"/>
     <line x1="12" y1="16" x2="12" y2="12"/>
     <line x1="12" y1="8" x2="12" y2="8"/>
+  </svg>
+`;
+
+export const coinIcon = `
+  <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="12" rx="8" ry="8" fill="#F9D923" stroke="#E6B800" stroke-width="2"/>
+    <ellipse cx="12" cy="12" rx="5" ry="5" fill="#FFFBEA" stroke="#E6B800" stroke-width="1"/>
+    <ellipse cx="12" cy="12" rx="7" ry="7" fill="none" stroke="#FFD700" stroke-width="1" />
+  </svg>
+`;
+
+export const arcanesIcon = `
+  <svg width="16" height="16" fill="none" stroke="#1abc9c" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+    <polygon points="12,2 22,20 2,20" fill="#1abc9c" opacity="0.15"/>
+    <circle cx="12" cy="15" r="3" stroke="#1abc9c" fill="none"/>
+  </svg>
+`;
+
+export const otherIcon = `
+  <svg width="16" height="16" fill="#888" stroke="currentColor" stroke-width="1.5"
+    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+    <polygon points="12,2 15,8.5 22,9.5 17,14.5 18.5,21.5 12,18 5.5,21.5 7,14.5 2,9.5 9,8.5" fill="#bbb"/>
   </svg>
 `;

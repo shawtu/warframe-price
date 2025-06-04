@@ -180,13 +180,50 @@ section {
   background: none;
 }
 
-.icon-timer,
-.icon-diamond {
+/* ===== ICONS: Unified icon styling ===== */
+.icon {
   display: flex;
   align-items: center;
   margin-right: 4px;
   color: var(--header-title);
+  /* Optional: set size for SVGs inside the icon span */
+  /* font-size: 1.1em; */
 }
+.icon:last-child {
+  margin-right: 0;
+}
+/* Optional: specific icon variations if needed */
+.icon--timer { /* Add timer-specific overrides here if desired */ }
+.icon--diamond { /* Add diamond-specific overrides here if desired */ }
+.icon--plat { /* Add plat/hr-specific overrides here if desired */ }
+
+/* ===== Remove old icon classes ===== */
+/* .icon-timer, .icon-diamond { ... } -- removed in favor of .icon and modifiers */
+
+/* ===== Spacing after icons (if needed) ===== */
+/* If you want more space after icon before text, adjust margin-right above */
+
+/* ===== END ICON SECTION ===== */
+
+
+/* ===== CARD CONTENT ===== */
+.card-content {
+  background: none;
+  padding-top: 12px;
+}
+.card-content.hidden,
+.card-summary.hidden {
+  display: none;
+}
+/* ==== CARD DETAILS (summary and full info) ====*/
+
+.card-details {
+  color: var(--header-title);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* == Card Summary == */
 
 .summary-est-value {
   font-weight: 500;
@@ -209,14 +246,24 @@ section {
   margin-right: 38px;
 }
 
-/* ===== CARD CONTENT ===== */
-.card-content {
-  background: none;
-  padding-top: 12px;
+/* ==== Full Card Info ==== */
+
+/* === full card info === */
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;                /* Space between icon and text */
+  margin-bottom: 1em;     /* Optional: space between rows */
+  white-space: normal;       /* Allow text to wrap */
+  word-break: break-word;    /* Break long words if needed */
+  flex: 1 1 0%;              /* Allow text to fill row, wrap as needed */
+  min-width: 0; 
 }
-.card-content.hidden,
-.card-summary.hidden {
-  display: none;
+
+.info-row .icon {
+  flex-shrink: 0;            /* Icon won't shrink */
+  display: flex;
+  align-items: center;
 }
 
 /* ===== MISSION CARD ===== */
@@ -245,3 +292,4 @@ section {
   gap: 24px;
   align-items: flex-start;
 }
+

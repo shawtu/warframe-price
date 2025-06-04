@@ -1,50 +1,132 @@
-import { timerIcon, diamondIcon } from './icons.js';
+import {
+  timerIcon,
+  diamondIcon,
+  platHrIcon,
+  locIcon,
+  warframeIcon,
+  farmIcon,
+  archonIcon,
+  installersIcon,
+  kuvaIcon,
+  rivenIcon,
+  rareArcanesIcon,
+  arcanesIcon,
+  otherIcon
+} from './icons.js';
 
-// Use camelCase keys as in your mapping
-const rewardColumns = [
-  { key: 'archonShard', label: 'Archon Shard' },
-  { key: 'installers', label: 'Installer' },
-  { key: 'rareArcanes', label: 'Rare Arcane' },
-  { key: 'rivens', label: 'Riven' },
-  { key: 'kuva', label: 'Kuva' },
-  { key: 'arcanes', label: 'Arcane' },
-  { key: 'mods', label: 'Mod' },
-  { key: 'other', label: '' }
+// Map reward columns to their display labels and pluralization rules
+const rewardColumnMap = [
+  { key: 'archonShard', label: 'archon shard', plural: 'archon shards' },
+  { key: 'installers', label: 'installer', plural: 'installers' },
+  { key: 'kuva', label: 'kuva', plural: 'kuva' },
+  { key: 'riven', label: 'riven', plural: 'rivens' },
+  { key: 'rareArcanes', label: 'rare arcane', plural: 'rare arcanes' },
+  { key: 'arcanes', label: 'arcane', plural: 'arcanes' },
+  { key: 'other', label: '', plural: '' }
 ];
 
-// Build summary reward text
+// Consistent reward value formatter
+function formatRewardValue(key, value) {
+  const map = rewardColumnMap.find(e => e.key === key);
+  const label = map?.label ?? '';
+  const plural = map?.plural ?? (label + 's');
+
+  if (!value) return '';
+  if (!isNaN(value) && value !== "") {
+    const n = Number(value);
+    if (n === 1) return label;
+    return `${n} ${plural}`;
+  }
+  if (typeof value === 'string') {
+    // If the string contains only numbers, still use number logic
+    if (!isNaN(value.trim())) {
+      const n = Number(value.trim());
+      if (n === 1) return label;
+      return `${n} ${plural}`;
+    }
+    // Otherwise, just return the text verbatim, split by commas
+    return value.split(',')
+      .map(x => x.trim())
+      .filter(Boolean)
+      .join(', ');
+  }
+  return '';
+}
+
+function buildRewardList(task) {
+  return rewardColumnMap.flatMap(({ key }) => {
+    const val = task[key];
+    const formatted = formatRewardValue(key, val);
+    return formatted ? [formatted] : [];
+  }).join(', ');
+}
+
 export function buildSummaryReward(task) {
-  // Plat per hour logic (use camelCase keys!)
-  if (task.pHr && (task.itemToSell || task.reward)) {
-    const item = task.itemToSell || task.reward || '';
-    const plat = task.plat ? `${task.plat}p` : '';
-    return `
-      <span class="icon-diamond">${diamondIcon}</span>
-      <span class="summary-reward-value">${item}${plat ? ` (${plat})` : ''}${task.pHr ? ` (${task.pHr}p/hr)` : ''}</span>
-    `;
+  let summary = '';
+  let icon = null;
+  let iconClass = '';
+
+  if (task.pHr) {
+    icon = platHrIcon;
+    iconClass = 'icon--plat';
+    if (task.itemToSell) {
+      summary = `${task.pHr}p/hr ${task.itemToSell}${task.plat ? ` (${task.plat}p)` : ''}`;
+    } else {
+      const rewardList = buildRewardList(task);
+      summary = `${task.pHr}p/hr ${rewardList}${task.plat ? ` (${task.plat}p)` : ''}`;
+    }
+  } else {
+    icon = diamondIcon;
+    iconClass = 'icon--diamond';
+    const rewardList = buildRewardList(task);
+    summary = rewardList;
   }
 
-  // Otherwise, build reward list
-  const rewardList = rewardColumns.flatMap(({ key, label }) => {
-    const val = task[key];
-    if (!val) return [];
-    if (!isNaN(val) && val !== "") {
-      // Handle numbers
-      return (Number(val) === 1)
-        ? label
-        : `${val} ${label}${Number(val) > 1 ? 's' : ''}`;
-    }
-    // Handle text / CSV
-    if (typeof val === 'string') {
-      // split comma lists, trim
-      return val.split(',').map(x => x.trim()).filter(Boolean).map(x => label ? `${x} ${label}` : x);
-    }
-    return [];
-  });
+  summary = summary.trim();
+  return summary
+    ? `<span class="icon ${iconClass}">${icon}</span>
+       <span class="summary-reward-value">${summary}</span>`
+    : '';
+}
 
-  return rewardList.length
-    ? `<span class="icon-diamond">${diamondIcon}</span>
-       <span class="summary-reward-value">${rewardList.join(', ')}</span>`
+// Build vertical rewards with icon to the left of the value, using consistent formatting
+function buildVerticalReward(task) {
+  if (task.pHr) {
+    let summary = '';
+    if (task.itemToSell) {
+      summary = `${task.pHr}p/hr ${task.itemToSell}${task.plat ? ` (${task.plat}p)` : ''}`;
+    } else {
+      const rewardList = buildRewardList(task);
+      summary = `${task.pHr}p/hr ${rewardList}${task.plat ? ` (${task.plat}p)` : ''}`;
+    }
+    return `
+      <div class="info-row">
+        <span class="icon icon--plat">${platHrIcon}</span>
+        <span class="reward-value">${summary}</span>
+      </div>
+    `;
+  }
+  // Otherwise, show vertical list of rewards (only if present), using consistent formatting
+  const rows = [
+    { icon: archonIcon, key: 'archonShard' },
+    { icon: installersIcon, key: 'installers' },
+    { icon: kuvaIcon, key: 'kuva' },
+    { icon: rivenIcon, key: 'riven' },
+    { icon: rareArcanesIcon, key: 'rareArcanes' },
+    { icon: arcanesIcon, key: 'arcanes' },
+    { icon: otherIcon, key: 'other' }
+  ].map(row => ({
+    ...row,
+    value: formatRewardValue(row.key, task[row.key])
+  })).filter(row => row.value);
+
+  return rows.length
+    ? rows.map(row => `
+        <div class="info-row">
+          <span class="icon">${row.icon}</span>
+          <span class="summary-reward-value">${row.value}</span>
+        </div>
+      `).join('')
     : '';
 }
 
@@ -68,14 +150,36 @@ export function createCard(task) {
       <div class="card-details">
         <button class="minimize-btn" aria-label="Expand details">+</button>
         <div class="card-summary">
-          <span class="icon-timer">${timerIcon}</span>
+          <span class="icon icon--timer">${timerIcon}</span>
           <span class="summary-est-value">${task.estTotTime || task.estTime || ""}</span>
           ${buildSummaryReward(task)}
         </div>
         <div class="card-content hidden">
-          ${task.taskInfo ? `<p>${task.taskInfo}</p>` : ""}
-          ${task.reward ? `<p><strong>Reward:</strong> ${task.reward}</p>` : ""}
-          ${(task.estTotTime || task.estTime) ? `<p><strong>Est. Time:</strong> ${task.estTotTime || task.estTime}</p>` : ""}
+          ${(task.estTotTime || task.estTime) ? `
+            <div class="info-row">
+              <span class="icon icon--timer">${timerIcon}</span>
+              <span class="reward-value">${task.estTotTime || task.estTime}</span>
+            </div>` : ""}
+          ${task.location ? `
+            <div class="info-row">
+              <span class="icon icon--location">${locIcon}</span>
+              <span class="reward-value">${task.location}</span>
+            </div>` : ""}
+          ${task.taskInfo ? `
+            <div class="info-row">
+              <span class="reward-value">${task.taskInfo}</span>
+            </div>` : ""}
+          ${task.warframe ? `
+            <div class="info-row">
+              <span class="icon icon--warframe">${warframeIcon}</span>
+              <span class="reward-value">${task.warframe}</span>
+            </div>` : ""}
+          ${task.concurrentFarm ? `
+            <div class="info-row">
+              <span class="icon icon--farm">${farmIcon}</span>
+              <span class="reward-value">${task.concurrentFarm}</span>
+            </div>` : ""}
+          ${buildVerticalReward(task)}
           ${task.missions && task.missions.length
             ? task.missions.map(createMissionCard).join('')
             : ""
@@ -117,14 +221,36 @@ export function createTimeSensitiveCard(task) {
       <div class="card-details">
         <button class="minimize-btn" aria-label="Expand details">+</button>
         <div class="card-summary">
-          <span class="icon-timer">${timerIcon}</span>
+          <span class="icon icon--timer">${timerIcon}</span>
           <span class="summary-est-value">${task.estTotTime || task.estTime || ""}</span>
           ${buildSummaryReward(task)}
         </div>
         <div class="card-content hidden">
-          ${task.taskInfo ? `<p>${task.taskInfo}</p>` : ""}
-          ${task.reward ? `<p><strong>Reward:</strong> ${task.reward}</p>` : ""}
-          ${(task.estTotTime || task.estTime) ? `<p><strong>Est. Time:</strong> ${task.estTotTime || task.estTime}</p>` : ""}
+          ${(task.estTotTime || task.estTime) ? `
+            <div class="info-row">
+              <span class="icon icon--timer">${timerIcon}</span>
+              <span class="reward-value">${task.estTotTime || task.estTime}</span>
+            </div>` : ""}
+          ${task.location ? `
+            <div class="info-row">
+              <span class="icon icon--location">${locIcon}</span>
+              <span class="reward-value">${task.location}</span>
+            </div>` : ""}
+          ${task.taskInfo ? `
+            <div class="info-row">
+              <span class="reward-value">${task.taskInfo}</span>
+            </div>` : ""}
+          ${task.warframe ? `
+            <div class="info-row">
+              <span class="icon icon--warframe">${warframeIcon}</span>
+              <span class="reward-value">${task.warframe}</span>
+            </div>` : ""}
+          ${task.concurrentFarm ? `
+            <div class="info-row">
+              <span class="icon icon--farm">${farmIcon}</span>
+              <span class="reward-value">${task.concurrentFarm}</span>
+            </div>` : ""}
+          ${buildVerticalReward(task)}
           ${task.missions && task.missions.length
             ? task.missions.map(createMissionCard).join('')
             : ""

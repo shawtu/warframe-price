@@ -1,23 +1,23 @@
-type	Task	Location	Task Info	warframe	concurrent farm	X per mission	time to complete	rep per min	Est Tot Time	Reward	plat	p/hr	item to sell	rep price	archon shard	instalers	kuva	riven	rare arcanes	arcanes	other
-weekly	BUY Paladino	Ironwake, Earth	Pay riven shards				na		na	35k kuva, rivens								35k	2			
-weekly	BUY Bird 3	Sanctum Anatomica, Deimos	Pay 30k rep, Shiny treasures			12.5	5		15.0	1 archon shard	priceless					1						
-weekly	BUY Yonta	Chrysalith, Zariman	Pay 5 pinion			1	5		25	35k kuva								35k				
-weekly	BUY Acrithis	Dormizone, Zariman	Pay 20 pathos clamps			15	15	1	20	exilus wpn adapter, catalyst, reactor	20	60			20		exilus wpn, catalyst, reactor					
-weekly	BUY Nightwave	Orbiter	In ship radio				na		na	sell mods	15			mods	20							cosmetics
-weekly	Archon Hunt	Orbiter	In ship dashboard			1	30		30	1 archon shard	priceless					1						
-weekly	Kahl Garrison	Orbiter	Complete the weekly mission			120	30	4	30	sell archon mods	24	144		archon mods	40							
-weekly	1999 Calender	Höllvania	Solo missions typically work best						60	1.5 archon ahard, exilus wpn adapter, catalyst, reactor						1.5	exilus wpn, melee arcane, catalyst, reactor, forma	10k			1	
-weekly	Duviri Circuit	Orbiter	Incarns - currently week 8						60, 120+	incarnons, arcanes, rivens									2	1	1	incarnon
-weekly	Netracell	Sanctum Anatomica, Deimos	Talk to Tagfer			1	10		10	.65 archon shard	priceless					0.65						
-weekly	Temporal Archimedia	Höllvania	Talk to Kaya Velasco				30		30	2+ archon shard, rare arcanes	priceless					2	omni forma			1		
-weekly	Deep Archimedia	Sanctum Anatomica, Deimos	Talk to Necraloid				30		30	2+ archon shard, rare arcanes	priceless					2	omni forma			1		
-daily	Craft Forma		Craft the forma						na	FORMA	11											
-daily	REP - Cephalon Simaris	Orb Valis, Venus	Scan enemies at Temple of Profit on Steelpath difficulty, reset by flying back and forth	Ivara				3.8	9.1	sell companion riven	49	111.72		companion riven, mods	100							
-daily	REP - Hex	Höllvania	Highest bounty on Steelpath		Coda Lich hunt, 1999 Calendar	11	5	2.2	15.0	swap intrinsic element on lich weapons											1	element swap
-daily	REP - Holdfast	Chrysalith, Zariman	"Exterminate bounty with Void Angel Bonus"	Operator		12.5	5	2.5	13.0	arcanes											1	
-daily	REP - Cavia	Sanctum Anatomica, Deimos	Highest bounty on Steelpath or Turn in Voca			7.5	5	1.5	25.0	melee arcane adapter, sell necramech mods	20	36			50		melee arcane				1	
-daily	REP - Entrati	Deimos	Select the lvl 5 bounty and fail it.  Then fly to open world mission stations to find Brute Force bounty.  When in the bounty go to the nightwave audio to skip dialogues.	Mesa	Aya	13	10	1.3	25.0	sell bond mods	19	74.1		bond mods	20							Aya
-daily	REP - Ostron	Plains of Eidolon, Earth	"Preserve critters - groups of vultures provide fast rep"	Ivara				1.5	21.7	sell bond mods	19	85.5		bond mods	20							
-daily	REP - Solaris United	Orb Valis, Venus	"Preserve critters - painfully slow"	Ivara			30	1.00	32.5	sell bond mods	19	57		bond mods	20							
-daily	BUY - Acrithis	Dormizone, Zariman	Arcane for clamps, not worth right now					1	10	rare arcane	10	60		rare arcane	10					1		
-daily	Focus Cap																					
+Type	Task	Location	Task Info	Warframe	Concurrent Farm	X per Mission	Time to Complete	Rep per Min	Est Tot Time	Reward	Plat	P/hr	Item to Sell	Rep Price	Archon Shard	Installers	Kuva	Riven	Rare Arcanes	Arcanes	Other
+weekly	BUY Paladino	Ironwake, Earth	Pay riven shards				na		na								35k kuva	2			
+weekly	BUY Bird 3	Sanctum Anatomica, Deimos	Pay 30k rep, Shiny treasures			12.5	5		15.0	15	priceless				1						
+weekly	BUY Yonta	Chrysalith, Zariman	Pay 5 pinion			1	5		25	25							35k kuva				
+weekly	BUY Acrithis	Dormizone, Zariman	Pay 20 pathos clamps			15	15	1	20	20	20	60		20		exilus wpn, catalyst, reactor					
+weekly	BUY Nightwave	Orbiter	In ship radio				na		na		15		mods	20							cosmetics
+weekly	Archon Hunt	Orbiter	In ship dashboard			1	30		30	30	priceless				1						
+weekly	Kahl Garrison	Orbiter	Complete the weekly mission			120	30	4	30	30	24	144	archon mods	40							
+weekly	1999 Calender	Höllvania	Solo missions typically work best						60	60					1.5	exilus wpn, melee arcane, catalyst, reactor, forma	10k			1	
+weekly	Duviri Circuit	Orbiter	Incarns - currently week 8						60, 120+	60, 120+								2	1	1	incarnon
+weekly	Netracell	Sanctum Anatomica, Deimos	Talk to Tagfer			1	10		10	10	priceless				0.65						
+weekly	Temporal Archimedia	Höllvania	Talk to Kaya Velasco				30		30	30	priceless				2	omni forma			1		
+weekly	Deep Archimedia	Sanctum Anatomica, Deimos	Talk to Necraloid				30		30	30	priceless				2	omni forma			1		
+daily	Craft Forma		Craft the forma						na	na	11										
+daily	REP - Cephalon Simaris	Orb Valis, Venus	Scan enemies at Temple of Profit on Steelpath difficulty, reset by flying back and forth	Ivara				3.8	9.1	sell companion riven	49	111.72	companion riven, mods	100							
+daily	REP - Hex	Höllvania	Highest bounty on Steelpath		Coda Lich hunt, 1999 Calendar	11	5	2.2	15.0	swap intrinsic element on lich weapons										1	element swap
+daily	REP - Holdfast	Chrysalith, Zariman	Exterminate bounty with Void Angel Bonus	Operator		12.5	5	2.5	13.0	arcanes										1	
+daily	REP - Cavia	Sanctum Anatomica, Deimos	Highest bounty on Steelpath or Turn in Voca			7.5	5	1.5	25.0	melee arcane adapter, sell necramech mods	20	36		50		melee arcane				1	
+daily	REP - Entrati	Deimos	Select the lvl 5 bounty and fail it.  Then fly to open world mission stations to find Brute Force bounty.  When in the bounty go to the nightwave audio to skip dialogues.	Mesa	Aya	13	10	1.3	25.0	sell bond mods	19	74.1	bond mods	20							Aya
+daily	REP - Ostron	Plains of Eidolon, Earth	Preserve critters - groups of vultures provide fast rep	Ivara				1.5	21.7	sell bond mods	19	85.5	bond mods	20							
+daily	REP - Solaris United	Orb Valis, Venus	Preserve critters - painfully slow	Ivara			30	1.00	32.5	sell bond mods	19	57	bond mods	20							
+daily	BUY - Acrithis	Dormizone, Zariman	Arcane for clamps, not worth right now					1	10	rare arcane	10	60	rare arcane	10					1		
+daily	Focus Cap																				

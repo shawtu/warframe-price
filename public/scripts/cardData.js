@@ -8,38 +8,38 @@ export async function getCardData() {
   const allTasks = await loadTSV('/data/taskSheet2.tsv');
 
   // Map TSV header names to camelCase JS property names
-  function mapRow(row) {
-    return {
-      type: row['type'],
-      task: row['Task'],
-      location: row['Location'],
-      taskInfo: row['Task Info'],
-      warframe: row['warframe'],
-      concurrentFarm: row['concurrent farm'],
-      xPerMission: row['X per mission'],
-      timeToComplete: row['time to complete'],
-      repPerMin: row['rep per min'],
-      estTotTime: row['Est Tot Time'],
-      reward: row['Reward'],
-      plat: row['plat'],
-      pHr: row['p/hr'],
-      itemToSell: row['item to sell'],
-      repPrice: row['rep price'],
-      archonShard: row['archon shard'],
-      installers: row['instalers'],
-      kuva: row['kuva'],
-      riven: row['riven'],
-      rareArcanes: row['rare arcanes'],
-      arcanes: row['arcanes'],
-      other: row['other']
-    };
-  }
+function mapRow(row) {
+  return {
+    type: row['Type'],
+    task: row['Task'],
+    location: row['Location'],
+    taskInfo: row['Task Info'],
+    warframe: row['Warframe'],
+    concurrentFarm: row['Concurrent Farm'],
+    xPerMission: row['X per Mission'],
+    timeToComplete: row['Time to Complete'],
+    repPerMin: row['Rep per Min'],
+    estTotTime: row['Est Tot Time'],
+    reward: row['Reward'],
+    plat: row['Plat'],
+    pHr: row['P/hr'],
+    itemToSell: row['Item to Sell'],
+    repPrice: row['Rep Price'],
+    archonShard: row['Archon Shard'],
+    installers: row['Installers'],
+    kuva: row['Kuva'],
+    riven: row['Riven'],
+    rareArcanes: row['Rare Arcanes'],
+    arcanes: row['Arcanes'],
+    other: row['Other']
+  };
+}
 
   const weeklyTasks = allTasks
-    .filter(row => row.type === 'weekly')
+    .filter(row => row.Type === 'weekly')
     .map(mapRow);
   const dailyTasks = allTasks
-    .filter(row => row.type === 'daily')
+    .filter(row => row.Type === 'daily')
     .map(mapRow);
 
   return {

@@ -24,7 +24,6 @@ export const marketNameOverrides = {
   "mystic bond (companion)": { slug: "mystic_bond" },
   "tandem bond (beast)": { slug: "tandem_bond" },
 
-
   // Example: hardset price for rare mod
   "primed chamber": { price: 12000 },
 
@@ -34,5 +33,25 @@ export const marketNameOverrides = {
   // Example: just a slug override for market lookup
   "amber ayatan star": "amber_ayatan_star",
 
+  // Aura mod hardset prices (overrides)
+  "sprint boost": { price: 24 },
+  "enemy radar": { price: 20 },
+  "loot detector": { price: 19 },
+  "corrosive projection": { price: 19 },
+  "holster amp": { price: 18 },
+  "steel charge": { price: 18 },
+  "rifle scavenger": { price: 17 },
+  "pistol scavenger": { price: 16 },
+  "rejuvenation": { price: 15 },
+  "rifle amp": { price: 15 },
+  "shield disruption": { price: 15 },
+  "dead eye": { price: 15 },
+  "energy siphon": { price: 14 },
+  "emp aura": { price: 12 },
+  "infested impedance": { price: 12 },
+  "sniper scavenger": { price: 10 },
+  "dreamer's bond": { price: 10 },
+  "shotgun scavenger": { price: 9 },
+  "physique": { price: 9 },
   // Add more overrides as needed!
 };
