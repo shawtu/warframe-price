@@ -191,14 +191,15 @@ export function createCard(task) {
 }
 
 // Mission Card Renderer
-export function createMissionCard(mission) {
+export function createMissionCard(mission, index = 0) {
+  // mission.timeLeft should be an absolute expiry time or seconds/ms remaining
   return `
     <div class="mission-card">
       <h4>${mission.missionTitle}</h4>
       <p><strong>Tier:</strong> ${mission.tier}</p>
       <p><strong>Planet:</strong> ${mission.planet}</p>
       <p><strong>Difficulty:</strong> ${mission.difficulty}</p>
-      <p><strong>Time Left:</strong> ${mission.timeLeft}</p>
+      <p><strong>Time Left:</strong> <span class="mission-timer" id="mission-timer-${index}"></span></p>
     </div>
   `;
 }

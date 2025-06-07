@@ -1,7 +1,7 @@
 import { buildCardData } from './cardDataBuilder.js';
 import { renderCards, createTimeSensitiveCard } from './cards.js';
 import { setupUIFunctionality } from './UIfunctionality.js';
-import { startResetTimers } from './resetTimers.js';
+import { startResetTimers, startMissionCountdowns } from './resetTimers.js'; // <--- NEW: import timers
 import { setupCheckboxIcons } from './checkboxIcons.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -13,4 +13,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupUIFunctionality();
   setupCheckboxIcons();
   startResetTimers();
+
+  // --- NEW: Gather all missions and start their timers ---
+  // Flatten all missions from all cardData arrays (skip if not present)
+  const allMissions = [
+    ...cardData.specialImportance,
+    ...cardData.weeklyTasks,
+    ...cardData.dailyTasks,
+    ...cardData.timeSensitive,
+  ]
+    .filter(task => Array.isArray(task.missions))
+    .flatMap(task => task.missions);
+
+  // Start live countdowns for all mission timers
+  startMissionCountdowns(allMissions);
 });
