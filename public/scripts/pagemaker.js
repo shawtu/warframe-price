@@ -100,8 +100,17 @@ function renderSyndicateRow(item) {
   const tr = document.createElement('tr');
   let platValue = ""; // Will be filled async
   let repPerPlat = ""; // Will be filled when plat updates
+
+  // Format item name for warframe.market URL (lowercase, underscores)
+  const marketUrlName = encodeURIComponent(item.Name.replace(/\s+/g, '_').toLowerCase());
+  const marketUrl = `https://warframe.market/items/${marketUrlName}`;
+
   tr.innerHTML = `
-    <td>${item.Name}</td>
+    <td>
+      <a href="${marketUrl}" target="_blank" rel="noopener noreferrer">
+        ${item.Name}
+      </a>
+    </td>
     <td>${formatNumber(item.Reputation)}</td>
     <td>${platValue}</td>
     <td>${repPerPlat}</td>
